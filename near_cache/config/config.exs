@@ -9,7 +9,7 @@ config :near_cache, NearCache.Local,
 config :near_cache, NearCache.Dist,
   adapter: Nebulex.Adapters.Dist,
   local: NearCache.Dist.Local,
-  node_picker: Nebulex.Adapters.Dist
+  node_picker: NearCache.NodePicker
 
 # Internal local cache used by NearCache.Dist
 config :near_cache, NearCache.Dist.Local,

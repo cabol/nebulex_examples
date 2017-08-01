@@ -32,18 +32,22 @@ retrieved from.
 
 In case you're wondering, this is how the near-cache would looks like:
 
-<img src="docs/NearCacheExample.png" height="600" width="100%" />
+<p align="center">
+  <img src="docs/NearCacheExample.png" height="400" width="600" align="middle" />
+</p>
 
 As shown in the figure, **Nebulex** distributed caches in nodes are connected
 each other, this happens once the Elixir cluster is setup. Then, they work
-automatically distributing the load across the cluster nodes.
+automatically distributing the load across cluster nodes, and to do so, we
+provide our own [NodePicker](lib/near_cache/node_picker.ex) implementation,
+which uses [Jump Consistent Hash](https://arxiv.org/abs/1406.2294) algorithm.
 
 ## Getting started
 
 First, let's do some tests locally, open an Elixir interactive console:
 
 ```
-$ iex -S mix
+iex -S mix
 ```
 
 Now let's do some tests:
@@ -87,19 +91,19 @@ We are going to create a three nodes cluster, so let's open three Elixir console
 Node 1:
 
 ```
-$ iex --name node1@127.0.0.1 --cookie near_cache -S mix
+iex --name node1@127.0.0.1 --cookie near_cache -S mix
 ```
 
 Node 2:
 
 ```
-$ iex --name node2@127.0.0.1 --cookie near_cache -S mix
+iex --name node2@127.0.0.1 --cookie near_cache -S mix
 ```
 
 Node 3:
 
 ```
-$ iex --name node3@127.0.0.1 --cookie near_cache -S mix
+iex --name node3@127.0.0.1 --cookie near_cache -S mix
 ```
 
 Next step would be setup the cluster, but fortunately this was already done,

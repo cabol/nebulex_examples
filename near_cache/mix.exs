@@ -17,6 +17,7 @@ defmodule NearCache.Mixfile do
   end
 
   defp deps do
-    [{:nebulex, github: "cabol/nebulex"}]
+    [{:nebulex, github: "cabol/nebulex"},
+     {:jchash, "~> 0.1.0", app: false}]
   end
 end
