@@ -65,9 +65,17 @@ iex(4)> EctoFallback.Cache.get({EctoFallback.Person, 1})
 SELECT p0."id", p0."first_name", p0."last_name", p0."age" FROM "people" AS p0 WHERE (p0."id" = $1) [1]
 %EctoFallback.Person{__meta__: #Ecto.Schema.Metadata<:loaded, "people">,
  age: 33, first_name: "Carlos", id: 1, last_name: "Bolanos"}
+
+# at this point, the data should be cached already, let's check
+iex(5)> EctoFallback.Cache.get({EctoFallback.Person, 1})
+%EctoFallback.Person{__meta__: #Ecto.Schema.Metadata<:loaded, "people">,
+ age: 33, first_name: "Carlos", id: 1, last_name: "Bolanos"}
+
+# it is working as expected!!
 ```
 
 As you may have noticed, if requested key doesn't exist in cache, then the
 database is checked, and if any data associated to that key is found, then
-it is cached and returned, otherwise nil is returned. The post hook is who
-do this work for us, check [EctoFallback.Cache](lib/ecto_fallback/cache.ex#L7-L21).
+it is cached and returned, otherwise nil is returned. Once data is cached,
+next time it should be retrieved directly from cache (without hit the database).
+The post hook is who do this work for us, check [EctoFallback.Cache](lib/ecto_fallback/cache.ex#L7-L21).

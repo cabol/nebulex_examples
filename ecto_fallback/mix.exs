@@ -16,7 +16,7 @@ defmodule EctoFallback.Mixfile do
   end
 
   defp deps do
-    [{:nebulex, github: "cabol/nebulex"},
+    [{:nebulex, "~> 1.0.0-rc.1"},
      {:ecto, "~> 2.0"},
      {:postgrex, "~> 0.11"}]
   end
