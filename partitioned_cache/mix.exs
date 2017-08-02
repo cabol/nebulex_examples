@@ -1,8 +1,8 @@
-defmodule NearCache.Mixfile do
+defmodule PartitionedCache.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :near_cache,
+    [app: :partitioned_cache,
      version: "0.1.0",
      elixir: "~> 1.4",
      build_embedded: Mix.env == :prod,
@@ -12,7 +12,7 @@ defmodule NearCache.Mixfile do
 
   def application do
     [extra_applications: [:logger],
-     mod: {NearCache.Application, []}]
+     mod: {PartitionedCache.Application, []}]
   end
 
   defp deps do

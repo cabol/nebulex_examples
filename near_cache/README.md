@@ -1,6 +1,7 @@
 # NearCache
 
-This example shows how to setup a [near cache](https://es.slideshare.net/C0deKhan/distributed-caching-essential-lessons-ts-1402).
+This example shows how to setup a [near cache](https://es.slideshare.net/C0deKhan/distributed-caching-essential-lessons-ts-1402)
+topology.
 
 A Near Cache provides local cache access to recently and/or often-used data,
 backed by a centralized or multi-tiered cache that is used to load-on-demand
@@ -110,7 +111,7 @@ Next step would be setup the cluster, but fortunately this was already done,
 if you take a look to [NearCache.Application](lib/near_cache/application.ex),
 there is a routine at the beginning of the start function `setup_cluster()`,
 which setup the cluster for us, it is very simple, it reads from config a list
-of nodes and then ping them.
+of nodes and then ping them – pretty easy right? as it should be!
 
 Now that we have the cluster ready to be used by our near cache, let's
 try it out, save some data on node 1:
