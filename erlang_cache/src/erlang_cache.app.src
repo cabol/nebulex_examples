@@ -1,0 +1,15 @@
+{application, erlang_cache, [
+  {description, "Using Nebulex from Erlang"},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {mod, {erlang_cache_app, []}},
+  {applications, [
+    kernel,
+    stdlib
+  ]},
+  {env,[]},
+  {modules, []},
+  {maintainers, []},
+  {licenses, ["MIT"]},
+  {links, []}
+ ]}.

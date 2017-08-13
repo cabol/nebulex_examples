@@ -9,3 +9,6 @@
 
 * [Nebulex-Ecto Integration](./nebulex_ecto_example) - Integrate Nebulex and
   Ecto extremely easy using [nebulex_ecto](https://github.com/cabol/nebulex_ecto).
+
+* [Erlang Example](./erlang_cache) - An example that illustrates how to use
+  Nebulex from an Erlang app.
