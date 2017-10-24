@@ -12,3 +12,6 @@
 
 * [Erlang Example](./erlang_cache) - An example that illustrates how to use
   Nebulex from an Erlang app.
+
+* [Nebulex Load Tests](./nebulex_bench) - This example shows how to run load
+  tests against `Nebulex`.

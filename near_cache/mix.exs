@@ -16,7 +16,7 @@ defmodule NearCache.Mixfile do
   end
 
   defp deps do
-    [{:nebulex, "~> 1.0.0-rc.1"},
+    [{:nebulex, "~> 1.0.0-rc.2"},
      {:jchash, "~> 0.1", app: false}]
   end
 end

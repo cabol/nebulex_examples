@@ -15,6 +15,6 @@ defmodule NbxCache.Mixfile do
   end
 
   defp deps do
-    [{:nebulex, "~> 1.0.0-rc.1"}]
+    [{:nebulex, "~> 1.0.0-rc.2"}]
   end
 end

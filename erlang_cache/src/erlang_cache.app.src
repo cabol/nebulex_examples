@@ -5,7 +5,10 @@
   {mod, {erlang_cache_app, []}},
   {applications, [
     kernel,
-    stdlib
+    stdlib,
+    elixir,
+    nebulex,
+    nbx_cache
   ]},
   {env,[]},
   {modules, []},
