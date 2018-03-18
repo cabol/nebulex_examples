@@ -1,4 +1,6 @@
-%{"ex2ms": {:hex, :ex2ms, "1.5.0", "19e27f9212be9a96093fed8cdfbef0a2b56c21237196d26760f11dfcfae58e97", [], [], "hexpm"},
-  "ex_shards": {:hex, :ex_shards, "0.2.1", "65c14d5ae71d6c4b617531f29923f8e57007e5b9874c100a11163c55ec0c7b21", [], [{:ex2ms, "~> 1.4", [hex: :ex2ms, repo: "hexpm", optional: false]}, {:shards, "~> 0.5", [hex: :shards, repo: "hexpm", optional: false]}], "hexpm"},
-  "nebulex": {:hex, :nebulex, "1.0.0-rc.2", "f197456c2cf8bfb8cc8da4872e76a02a65216f02806985246ad23ba4b0ac3c3e", [], [{:ex_shards, "~> 0.2", [hex: :ex_shards, repo: "hexpm", optional: false]}], "hexpm"},
-  "shards": {:hex, :shards, "0.5.0", "2780002307ccf250368a067d59b364e7cf1af1c788a9f60b490d199a6028b6de", [], [], "hexpm"}}
+%{
+  "ex2ms": {:hex, :ex2ms, "1.5.0", "19e27f9212be9a96093fed8cdfbef0a2b56c21237196d26760f11dfcfae58e97", [:mix], [], "hexpm"},
+  "ex_shards": {:hex, :ex_shards, "0.2.1", "65c14d5ae71d6c4b617531f29923f8e57007e5b9874c100a11163c55ec0c7b21", [:mix], [{:ex2ms, "~> 1.4", [hex: :ex2ms, repo: "hexpm", optional: false]}, {:shards, "~> 0.5", [hex: :shards, repo: "hexpm", optional: false]}], "hexpm"},
+  "nebulex": {:hex, :nebulex, "1.0.0-rc.3", "466075e1060f9dc523c72ae8f723608330aed161efa65fa2d8fb5533fb87de0b", [:mix], [{:ex_shards, "~> 0.2", [hex: :ex_shards, repo: "hexpm", optional: false]}], "hexpm"},
+  "shards": {:hex, :shards, "0.5.0", "2780002307ccf250368a067d59b364e7cf1af1c788a9f60b490d199a6028b6de", [:make, :rebar3], [], "hexpm"},
+}

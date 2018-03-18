@@ -19,6 +19,12 @@ which uses [Jump Consistent Hash](https://arxiv.org/abs/1406.2294) algorithm.
 
 ## Getting started
 
+First of all let's run:
+
+```
+$ mix deps.get
+```
+
 We are going to create a three nodes cluster, so let's open three Elixir consoles,
 Node 1:
 

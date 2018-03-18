@@ -2,22 +2,28 @@ defmodule EctoFallback.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :ecto_fallback,
-     version: "0.1.0",
-     elixir: "~> 1.4",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps()]
+    [
+      app: :ecto_fallback,
+      version: "0.1.0",
+      elixir: "~> 1.4",
+      build_embedded: Mix.env == :prod,
+      start_permanent: Mix.env == :prod,
+      deps: deps()
+    ]
   end
 
   def application do
-    [applications: [:logger, :ecto, :postgrex],
-     mod: {EctoFallback.Application, []}]
+    [
+      applications: [:logger, :ecto, :postgrex],
+      mod: {EctoFallback.Application, []}
+    ]
   end
 
   defp deps do
-    [{:nebulex, "~> 1.0.0-rc.2"},
-     {:ecto, "~> 2.0"},
-     {:postgrex, "~> 0.11"}]
+    [
+      {:nebulex, "~> 1.0.0-rc.3"},
+      {:ecto, "~> 2.0"},
+      {:postgrex, "~> 0.11"}
+    ]
   end
 end

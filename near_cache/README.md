@@ -48,7 +48,8 @@ which uses [Jump Consistent Hash](https://arxiv.org/abs/1406.2294) algorithm.
 First, let's do some tests locally, open an Elixir interactive console:
 
 ```
-iex -S mix
+$ mix deps.get
+$ iex -S mix
 ```
 
 Now let's do some tests:

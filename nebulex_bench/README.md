@@ -8,6 +8,7 @@ This project shows how to run bench/load tests against `Nebulex` using
 First of all, let's run:
 
 ```
+$ mix deps.get
 $ iex -S mix
 ```
 
