@@ -7,27 +7,27 @@ defmodule NearCache do
 
   defdelegate get!(key, opts \\ []), to: NearCache.Multilevel
 
-  defdelegate set(key, value, opts \\ []), to: NearCache.Dist
+  defdelegate set(key, value, opts \\ []), to: NearCache.Multilevel
 
-  defdelegate delete(key, opts \\ []), to: NearCache.Dist
+  defdelegate delete(key, opts \\ []), to: NearCache.Multilevel
 
-  defdelegate has_key?(key), to: NearCache.Dist
+  defdelegate has_key?(key), to: NearCache.Multilevel
 
-  defdelegate size(), to: NearCache.Dist
+  defdelegate size(), to: NearCache.Multilevel
 
-  defdelegate flush(), to: NearCache.Dist
+  defdelegate flush(), to: NearCache.Multilevel
 
-  defdelegate keys(), to: NearCache.Dist
+  defdelegate keys(), to: NearCache.Multilevel
 
-  defdelegate reduce(acc, reducer, opts \\ []), to: NearCache.Dist
+  defdelegate reduce(acc, reducer, opts \\ []), to: NearCache.Multilevel
 
-  defdelegate to_map(opts \\ []), to: NearCache.Dist
+  defdelegate to_map(opts \\ []), to: NearCache.Multilevel
 
-  defdelegate pop(key, opts \\ []), to: NearCache.Dist
+  defdelegate pop(key, opts \\ []), to: NearCache.Multilevel
 
-  defdelegate get_and_update(key, fun, opts \\ []), to: NearCache.Dist
+  defdelegate get_and_update(key, fun, opts \\ []), to: NearCache.Multilevel
 
-  defdelegate update(key, initial, fun, opts \\ []), to: NearCache.Dist
+  defdelegate update(key, initial, fun, opts \\ []), to: NearCache.Multilevel
 
-  defdelegate transaction(key, fun), to: NearCache.Dist
+  defdelegate transaction(key, fun), to: NearCache.Multilevel
 end

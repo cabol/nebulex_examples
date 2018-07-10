@@ -11,9 +11,9 @@ defmodule NearCache.Application do
 
     # Define workers and child supervisors to be supervised
     children = [
-      supervisor(NearCache.Local, []),
-      supervisor(NearCache.Dist, []),
-      supervisor(NearCache.Dist.Local, []),
+      supervisor(NearCache.Multilevel.L2.Primary, []),
+      supervisor(NearCache.Multilevel.L2, []),
+      supervisor(NearCache.Multilevel.L1, []),
       supervisor(NearCache.Multilevel, [])
     ]
 

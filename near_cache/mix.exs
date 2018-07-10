@@ -13,12 +13,16 @@ defmodule NearCache.Mixfile do
   end
 
   def application do
-    [extra_applications: [:logger],
-     mod: {NearCache.Application, []}]
+    [
+      extra_applications: [:logger],
+      mod: {NearCache.Application, []}
+    ]
   end
 
   defp deps do
-    [{:nebulex, "~> 1.0.0-rc.3"},
-     {:jchash, "~> 0.1", app: false}]
+    [
+      {:nebulex, "~> 1.0.0-rc.3"},
+      {:jchash, "~> 0.1", app: false}
+    ]
   end
 end

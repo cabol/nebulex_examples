@@ -1,16 +1,55 @@
 # NearCache
 
-This example shows how to setup a [near cache](https://es.slideshare.net/C0deKhan/distributed-caching-essential-lessons-ts-1402)
-topology.
+This example shows how to setup a near cache topology using Nebulex.
 
-A Near Cache provides local cache access to recently and/or often-used data,
-backed by a centralized or multi-tiered cache that is used to load-on-demand
-for local cache misses. The result is a tunable balance between the preservation
-of local memory resources and the performance benefits of truly local caches.
+## Near Cache Topology
+
+* **Requirement**: Extreme Performance. Extreme Scalability.
+
+* **Solution**: Local “L1” In-Memory Cache in front of a Clustered “L2”
+  Partitioned Cache.
+
+* **Result**: Zero Latency Access to recently-used and frequently-used data.
+  Scalable cache capacity and throughput, with a fixed cost for worst-case.
+  A Near Cache provides local cache access to recently and/or often-used data,
+  backed by a centralized or multi-tiered cache that is used to load-on-demand
+  for local cache misses. The result is a tunable balance between the
+  preservation of local memory resources and the performance benefits
+  of truly local caches.
+
+### Near Cache Topology – Reads
+
+Multi-level caches generally operate by checking the fastest, level 1 (L1) cache
+first (local cache), if it hits, the adapter proceeds at high speed. If that
+first cache misses, the next fastest cache (L2, maybe distributed cache) is
+checked, and so on, before accessing external storage, maybe the Database. The
+The Database may serve also as backup, in the case the data in the cache becomes
+unavailable; recovered from DB on-demand.
+
+<p align="center">
+  <img src="docs/NearCacheReads.png" height="400" width="600" align="middle" />
+</p>
+
+### Near Cache Topology – Writes
+
+For write functions, the "Write Through" policy is applied by default, this
+policy ensures that the data is stored safely as it is written throughout the
+hierarchy; it might be possible to force the write operation in a specific
+level (this depends on the cache options).
+
+<p align="center">
+  <img src="docs/NearCacheWrites.png" height="400" width="600" align="middle" />
+</p>
+
+### References
+
+* [Distributed Caching Essential Lessons by Cameron Purdy](https://www.infoq.com/presentations/distributed-caching-lessons)
+
+## Near Cache with Nebulex
 
 In this example, the near cache is composed by two caching levels:
- - L1 – Local cache (nearest): [NearCache.Local](lib/near_cache/local.ex)
- - L2 – Distributed cache: [NearCache.Dist](lib/near_cache/dist.ex)
+ - L1 - Local cache (nearest): [NearCache.Local](lib/near_cache/local.ex)
+ - L2 - Distributed cache: [NearCache.Dist](lib/near_cache/dist.ex)
 
 Besides, we have a multi-level cache module [NearCache.Multilevel](lib/near_cache/multilevel.ex)
 in order to encapsulate these two cache levels mentioned before.
@@ -29,12 +68,17 @@ This near cache also has a post hook to log all `get` and `get!` commands, other
 are skipped. In this way, we'll able to see what cache level the data was
 retrieved from.
 
-## Near Cache View
+> NOTE: Nebulex itself does not provides backup mechanism, but that can be
+  handled by a `:fallback` function from the app layer and using the Database.
+  For more info you can check
+  [Nebulex.Adapters.Multilevel](https://github.com/cabol/nebulex/blob/master/lib/nebulex/adapters/multilevel.ex)
+  adapter, the .`:fallback` options or also
+  [nebulex_ecto](https://github.com/cabol/nebulex_ecto)
 
 In case you're wondering, this is how the near-cache would looks like:
 
 <p align="center">
-  <img src="docs/NearCacheExample.png" height="400" width="600" align="middle" />
+  <img src="docs/NebulexNearCache.png" height="400" width="600" align="middle" />
 </p>
 
 As shown in the figure, **Nebulex** distributed caches in nodes are connected
