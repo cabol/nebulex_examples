@@ -1,14 +1,72 @@
 # Partitioned Cache
 
-This example shows how to setup a [partitioned cache](https://es.slideshare.net/C0deKhan/distributed-caching-essential-lessons-ts-1402)
-topology.
+This example shows how to setup a partitioned cache topology using Nebulex.
 
-## Partitioned Cache View
+## Partitioned Cache Topology
+
+* **Requirement**: Extreme Scalability.
+
+* **Solution**: Shaded-Nothing Architecture. Automatically Partition data across
+  all cluster members.
+
+* **Result**: Linear Scalability. By partitioning the data evenly, the per-port
+  throughput (the maximum amount of work that can be performed by each server)
+  remains constant as servers are added, up to the extent of the switched
+  fabric.
+
+### Benefits
+
+* Partitioned - The size of the cache and the processing power available grow
+  linearly with the size of the cluster.
+
+* Load-Balanced - The responsibility for managing the data is automatically
+  load-balanced across the cluster.
+
+* Ownership - Exactly one node in the cluster is responsible for each piece of
+  data in the cache.
+
+* Supports cache-through architectures
+
+* Supports data-grid capabilities
+
+* Point-To-Point - The communication for the partitioned cache is all
+  point-to-point, enabling linear scalability.
+
+### Reads
+
+<p align="center">
+  <img src="docs/PartitionedCacheReads.png" height="400" width="600" align="middle" />
+</p>
+
+### Writes
+
+<p align="center">
+  <img src="docs/PartitionedCacheWrites.png" height="400" width="600" align="middle" />
+</p>
+
+### Failover
+
+Failover has to be implemented on top of Nebulex. For instance, data can be
+explicitly backed up in a Database, hence when a cache node is unavailable and
+we get a cache miss, data can be recovered from Database; it is an on-demand
+process, it is only executed on cache misses (Database is the fallback).
+Therefore, there is never a moment when the cluster is not ready for any server
+to die: no data vulnerabilities.
+
+For more info you can check:
+ * [Nebulex.Adapters.Multilevel](https://github.com/cabol/nebulex/blob/master/lib/nebulex/adapters/multilevel.ex)
+ * [nebulex_ecto](https://github.com/cabol/nebulex_ecto)
+
+### References
+
+* [Distributed Caching Essential Lessons by Cameron Purdy](https://www.infoq.com/presentations/distributed-caching-lessons)
+
+## Partitioned Cache with Nebulex
 
 In case you're wondering, this is how the partitioned cache would looks like:
 
 <p align="center">
-  <img src="docs/PartitionedCacheExample.png" height="400" width="600" align="middle" />
+  <img src="docs/NebulexPartitionedCache.png" height="400" width="600" align="middle" />
 </p>
 
 As shown in the figure, **Nebulex** distributed caches in nodes are connected

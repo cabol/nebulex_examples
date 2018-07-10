@@ -41,6 +41,19 @@ level (this depends on the cache options).
   <img src="docs/NearCacheWrites.png" height="400" width="600" align="middle" />
 </p>
 
+### Failover
+
+Failover has to be implemented on top of Nebulex. For instance, data can be
+explicitly backed up in a Database, hence when a cache node is unavailable and
+we get a cache miss, data can be recovered from Database; it is an on-demand
+process, it is only executed on cache misses (Database is the fallback or
+level 3 – L3). Therefore, there is never a moment when the cluster is not ready
+for any server to die: no data vulnerabilities.
+
+For more info you can check:
+ * [Nebulex.Adapters.Multilevel](https://github.com/cabol/nebulex/blob/master/lib/nebulex/adapters/multilevel.ex)
+ * [nebulex_ecto](https://github.com/cabol/nebulex_ecto)
+
 ### References
 
 * [Distributed Caching Essential Lessons by Cameron Purdy](https://www.infoq.com/presentations/distributed-caching-lessons)
@@ -67,13 +80,6 @@ cache `NearCache.Dist`.
 This near cache also has a post hook to log all `get` and `get!` commands, others
 are skipped. In this way, we'll able to see what cache level the data was
 retrieved from.
-
-> NOTE: Nebulex itself does not provides backup mechanism, but that can be
-  handled by a `:fallback` function from the app layer and using the Database.
-  For more info you can check
-  [Nebulex.Adapters.Multilevel](https://github.com/cabol/nebulex/blob/master/lib/nebulex/adapters/multilevel.ex)
-  adapter, the .`:fallback` options or also
-  [nebulex_ecto](https://github.com/cabol/nebulex_ecto)
 
 In case you're wondering, this is how the near-cache would looks like:
 

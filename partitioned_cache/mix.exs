@@ -13,8 +13,10 @@ defmodule PartitionedCache.Mixfile do
   end
 
   def application do
-    [extra_applications: [:logger],
-     mod: {PartitionedCache.Application, []}]
+    [
+      extra_applications: [:logger],
+      mod: {PartitionedCache.Application, []}
+    ]
   end
 
   defp deps do
