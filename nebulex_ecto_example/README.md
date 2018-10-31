@@ -27,16 +27,11 @@ Let's see how it works!
 
 ## Getting started
 
-First, let's create the database:
+First of all, let's setup the database:
 
 ```
-mix ecto.create
-```
-
-Then, run migrations:
-
-```
-mix ecto.migrate
+$ mix ecto.create
+$ mix ecto.migrate
 ```
 
 Now we have the database setup and ready to be used.
@@ -57,50 +52,105 @@ iex(2)> alias NebulexEctoExample.CacheableRepo
 NebulexEctoExample.CacheableRepo
 
 iex(3)> person = %Person{first_name: "Carlos", last_name: "Bolanos", age: 33}
-%NebulexEctoExample.Person{__meta__: #Ecto.Schema.Metadata<:built, "people">,
- age: 33, first_name: "Carlos", id: nil, last_name: "Bolanos"}
+%NebulexEctoExample.Person{
+  __meta__: #Ecto.Schema.Metadata<:built, "people">,
+  age: 33,
+  first_name: "Carlos",
+  id: nil,
+  last_name: "Bolanos"
+}
 
 iex(4)> CacheableRepo.get(Person, 1)
+
+15:45:25.700 [debug] QUERY OK source="people" db=2.3ms
+SELECT p0."id", p0."first_name", p0."last_name", p0."age" FROM "people" AS p0 WHERE (p0."id" = $1) [1]
 nil
 
 iex(5)> NebulexEctoExample.Cache.get({Person, 1})
 nil
 
 iex(6)> {:ok, person} = CacheableRepo.insert(person)
+
+15:45:53.386 [debug] QUERY OK db=2.9ms queue=0.1ms
+INSERT INTO "people" ("age","first_name","last_name") VALUES ($1,$2,$3) RETURNING "id" [33, "Carlos", "Bolanos"]
 {:ok,
- %NebulexEctoExample.Person{__meta__: #Ecto.Schema.Metadata<:loaded, "people">,
-  age: 33, first_name: "Carlos", id: 1, last_name: "Bolanos"}}
+ %NebulexEctoExample.Person{
+   __meta__: #Ecto.Schema.Metadata<:loaded, "people">,
+   age: 33,
+   first_name: "Carlos",
+   id: 1,
+   last_name: "Bolanos"
+ }}
 
 iex(7)> CacheableRepo.get(Person, 1)
-%NebulexEctoExample.Person{__meta__: #Ecto.Schema.Metadata<:loaded, "people">,
- age: 33, first_name: "Carlos", id: 1, last_name: "Bolanos"}
+
+15:46:14.746 [debug] QUERY OK source="people" db=2.8ms decode=2.8ms
+SELECT p0."id", p0."first_name", p0."last_name", p0."age" FROM "people" AS p0 WHERE (p0."id" = $1) [1]
+%NebulexEctoExample.Person{
+  __meta__: #Ecto.Schema.Metadata<:loaded, "people">,
+  age: 33,
+  first_name: "Carlos",
+  id: 1,
+  last_name: "Bolanos"
+}
 
 iex(8)> NebulexEctoExample.Cache.get({Person, 1})
-%NebulexEctoExample.Person{__meta__: #Ecto.Schema.Metadata<:loaded, "people">,
- age: 33, first_name: "Carlos", id: 1, last_name: "Bolanos"}
+%NebulexEctoExample.Person{
+  __meta__: #Ecto.Schema.Metadata<:loaded, "people">,
+  age: 33,
+  first_name: "Carlos",
+  id: 1,
+  last_name: "Bolanos"
+}
 ```
 
 So far seems to be working as expected, let's force some evictions:
 
 ```elixir
 iex(9)> changeset = Ecto.Changeset.change person, last_name: "Andres"
-#Ecto.Changeset<action: nil, changes: %{last_name: "Andres"}, errors: [],
- data: #NebulexEctoExample.Person<>, valid?: true>
+#Ecto.Changeset<
+  action: nil,
+  changes: %{last_name: "Andres"},
+  errors: [],
+  data: #NebulexEctoExample.Person<>,
+  valid?: true
+>
 
 iex(10)> person = CacheableRepo.update!(changeset)
-%NebulexEctoExample.Person{__meta__: #Ecto.Schema.Metadata<:loaded, "people">,
- age: 33, first_name: "Carlos", id: 1, last_name: "Andres"}
+
+15:47:30.690 [debug] QUERY OK db=8.3ms
+UPDATE "people" SET "last_name" = $1 WHERE "id" = $2 ["Andres", 1]
+%NebulexEctoExample.Person{
+  __meta__: #Ecto.Schema.Metadata<:loaded, "people">,
+  age: 33,
+  first_name: "Carlos",
+  id: 1,
+  last_name: "Andres"
+}
 
 iex(11)> NebulexEctoExample.Cache.get({Person, 1})
 nil
 
 iex(12)> person = CacheableRepo.update!(changeset, nbx_evict: :replace)
-%NebulexEctoExample.Person{__meta__: #Ecto.Schema.Metadata<:loaded, "people">,
- age: 33, first_name: "Carlos", id: 1, last_name: "Andres"}
+
+15:47:54.464 [debug] QUERY OK db=5.5ms decode=0.2ms
+UPDATE "people" SET "last_name" = $1 WHERE "id" = $2 ["Andres", 1]
+%NebulexEctoExample.Person{
+  __meta__: #Ecto.Schema.Metadata<:loaded, "people">,
+  age: 33,
+  first_name: "Carlos",
+  id: 1,
+  last_name: "Andres"
+}
 
 iex(13)> NebulexEctoExample.Cache.get({Person, 1})
-%NebulexEctoExample.Person{__meta__: #Ecto.Schema.Metadata<:loaded, "people">,
- age: 33, first_name: "Carlos", id: 1, last_name: "Andres"}
+%NebulexEctoExample.Person{
+  __meta__: #Ecto.Schema.Metadata<:loaded, "people">,
+  age: 33,
+  first_name: "Carlos",
+  id: 1,
+  last_name: "Andres"
+}
 ```
 
 It works! You can continue testing more functions!

@@ -4,17 +4,15 @@ defmodule NearCache.Application do
   use Application
 
   def start(_type, _args) do
-    import Supervisor.Spec, warn: false
-
     # Setup the cluster
     :ok = setup_cluster()
 
     # Define workers and child supervisors to be supervised
     children = [
-      supervisor(NearCache.Multilevel.L2.Primary, []),
-      supervisor(NearCache.Multilevel.L2, []),
-      supervisor(NearCache.Multilevel.L1, []),
-      supervisor(NearCache.Multilevel, [])
+      NearCache.L2.Primary,
+      NearCache.L2,
+      NearCache.L1,
+      NearCache
     ]
 
     opts = [strategy: :one_for_one, name: NearCache.Supervisor]

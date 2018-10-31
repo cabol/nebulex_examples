@@ -1,8 +1,7 @@
 {"1.1.0",
-[{<<"ex_shards">>,{elixir,"ex_shards","0.2.1"},0},
- {<<"nebulex">>,{elixir,"nebulex","1.0.0-rc.3"},0},
- {<<"shards">>,{pkg,<<"shards">>,<<"0.5.0">>},0}]}.
+[{<<"nebulex">>,{elixir,<<"nebulex">>,<<"1.0.0">>},0},
+ {<<"shards">>,{pkg,<<"shards">>,<<"0.6.0">>},0}]}.
 [
 {pkg_hash,[
- {<<"shards">>, <<"2780002307CCF250368A067D59B364E7CF1AF1C788A9F60B490D199A6028B6DE">>}]}
+ {<<"shards">>, <<"678D292AD74A4598A872930F9B12251F43E97F6050287F1FB712FBFD3D282F75">>}]}
 ].

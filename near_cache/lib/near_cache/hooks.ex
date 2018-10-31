@@ -3,14 +3,23 @@ defmodule NearCache.Hooks do
     quote do
       require Logger
 
-      def post_hooks do
-        [&log_hook/2]
-      end
+      def pre_hooks do
+        hook = fn
+          _, {cache, :get, [key, opts]} ->
+            Enum.each(cache.__levels__, fn level ->
+              result = level.get(key, opts)
 
-      def log_hook(result, {cache, :get, [key, opts]} = call) do
-        Logger.debug "#{cache}.get(#{inspect key}, #{inspect opts}) ==> #{inspect result}"
+              Logger.debug(
+                "#{level}.get(#{inspect(key)}, #{inspect(opts)}) ==> #{inspect(result)}"
+              )
+            end)
+
+          _, _ ->
+            :noop
+        end
+
+        {:pipe, [hook]}
       end
-      def log_hook(_, _), do: :noop
     end
   end
 end

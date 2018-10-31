@@ -66,4 +66,11 @@ $ ./deps/basho_bench/priv/gp_latencies.sh -d "tests/current" -k "mean"
   <img src="docs/Nebulex_Local_Latencies.png" height="80%" width="100%" align="middle" />
 </p>
 
-> **Test Environment:** OS: Mac OSX 10.11.4, Processor: 2.2 GHz Intel Core i7 (Quad Core), Memory: 16 GB 1600 MHz.
+### Test Environment:
+
+ * Operating System: macOS High Sierra
+ * CPU Information: Intel(R) Core(TM) i7-6700HQ CPU @ 2.60GHz
+ * Number of Available Cores: 8
+ * Available memory: 16 GB
+ * Elixir 1.7.2
+ * Erlang 21.0

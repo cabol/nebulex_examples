@@ -67,7 +67,7 @@ nil
 
 It is pretty easy!
 
-BTW, you should run the `observer` in order to see how the Nebulex cache runs
+BTW, you should run the `observer` in order to see how the Nebulex runs
 as part of the Erlang application's supervision tree:
 
 ```

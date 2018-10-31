@@ -5,7 +5,7 @@ defmodule NbxCache.Mixfile do
     [
       app: :nbx_cache,
       version: "0.1.0",
-      elixir: "~> 1.4",
+      elixir: "~> 1.5",
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
       deps: deps()
@@ -17,6 +17,6 @@ defmodule NbxCache.Mixfile do
   end
 
   defp deps do
-    [{:nebulex, "~> 1.0.0-rc.3"}]
+    [{:nebulex, "~> 1.0"}]
   end
 end

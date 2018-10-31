@@ -105,42 +105,41 @@ $ iex -S mix
 Now let's do some tests:
 
 ```elixir
-# check there is nothing cached
+# check there is nothing cached yet
 iex(1)> NearCache.get "foo"
-
-[debug] Elixir.NearCache.Local.get(1, [return: :object]) ==> nil
-[debug] Elixir.NearCache.Dist.get(1, [return: :object]) ==> nil
+[debug] Elixir.NearCache.L1.get("foo", []) ==> nil
+[debug] Elixir.NearCache.L2.get("foo", []) ==> nil
+nil
 
 # let's save some data
 # data will be saved into the distributed cache – level 2 (L2)
-iex(2)> NearCache.set "foo", "bar"
+iex(2)> NearCache.L2.set "foo", "bar"
 "bar"
 
 # let's try to retrieve the data again
-iex(3)> NearCache.get! "foo"
-
-[debug] Elixir.NearCache.Local.get("foo", [return: :object]) ==> nil
-[debug] Elixir.NearCache.Dist.get("foo", [return: :object]) ==> %Nebulex.Object{key: "foo", ttl: :infinity, value: "bar", version: 1501365069361212000}
+iex(3)> NearCache.get "foo"
+[debug] Elixir.NearCache.L1.get("foo", []) ==> nil
+[debug] Elixir.NearCache.L2.get("foo", []) ==> "bar"
 "bar"
 ```
 
-As you can see, the data was found within the L2 cache (distributed cache) as we
+As you can see, the data was found into the L2 cache (distributed cache), as we
 expected. Now, let's retrieve the data again:
 
 ```elixir
 iex(4)> NearCache.get! "foo"
+[debug] Elixir.NearCache.L1.get("foo", []) ==> "bar"
+[debug] Elixir.NearCache.L2.get("foo", []) ==> "bar"
 "bar"
-
-[debug] Elixir.NearCache.Local.get("foo", [return: :object]) ==> %Nebulex.Object{key: "foo", ttl: :infinity, value: "bar", version: 1501369202402508000}
 ```
 
-The data has been retrieved from the nearest cache, the L1 cache – the multi-level
-cache did its work!
+The data has been retrieved from the nearest cache, L1 in this case. The
+multi-level cache did the work!
 
-## Distributed tests
+## Distributed environment
 
-We are going to create a three nodes cluster, so let's open three Elixir consoles,
-Node 1:
+We are going to create a three nodes cluster, so let's open three Elixir
+consoles, Node 1:
 
 ```
 iex --name node1@127.0.0.1 --cookie near_cache -S mix
@@ -176,31 +175,29 @@ Retrieve that saved data from other node, for example from node2:
 
 ```elixir
 iex(node2@127.0.0.1)> NearCache.get "foo"
+[debug] Elixir.NearCache.L1.get("foo", []) ==> nil
+[debug] Elixir.NearCache.L2.get("foo", []) ==> "bar"
 "bar"
-
-[debug] Elixir.NearCache.Local.get("foo", [return: :object]) ==> nil
-[debug] Elixir.NearCache.Dist.get("foo", [return: :object]) ==> %Nebulex.Object{key: "foo", ttl: :infinity, value: "bar", version: 1501368687029316000}
 ```
 
 And from node 3:
 
 ```elixir
 iex(node3@127.0.0.1)> NearCache.get "foo"
+[debug] Elixir.NearCache.L1.get("foo", []) ==> nil
+[debug] Elixir.NearCache.L2.get("foo", []) ==> "bar"
 "bar"
-
-[debug] Elixir.NearCache.Local.get("foo", [return: :object]) ==> nil
-[debug] Elixir.NearCache.Dist.get("foo", [return: :object]) ==> %Nebulex.Object{key: "foo", ttl: :infinity, value: "bar", version: 1501368751793454000}
 ```
 
 Seems to be working as expected, as you can see the data was retrieved from L2
-cache (distributed cache) at first time, now let's get the same data again:
+cache (distributed cache) at first time, now let's do it again:
 
 ```elixir
 iex(node2@127.0.0.1)> NearCache.get "foo"
-
-[debug] Elixir.NearCache.Local.get("foo", [return: :object]) ==> %Nebulex.Object{key: "foo", ttl: :infinity, value: "bar", version: 1501368751802015000}
+[debug] Elixir.NearCache.L1.get("foo", []) ==> "bar"
+[debug] Elixir.NearCache.L2.get("foo", []) ==> "bar"
 "bar"
 ```
 
 This time the data was retrieved from L1 cache, it is now in the nearest cache,
-the multi-level cache did its work again!
+the multi-level cache did the work again!

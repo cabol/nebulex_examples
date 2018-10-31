@@ -2,7 +2,8 @@
 
 * [Partitioned Cache](./partitioned_cache) - Partitioned cache topology example.
 
-* [Near Cache](./near_cache) - Near cache topology example.
+* [Near Cache](./near_cache) - Near cache topology example. This example uses
+  all built-in adapters (Multilevel, Distributed and Local).
 
 * [Ecto Fallback](./ecto_fallback) - Database fallback (in case the key doesn't
   exist in cache) using a simple cache post-hook.
@@ -14,4 +15,4 @@
   Nebulex from an Erlang app.
 
 * [Nebulex Load Tests](./nebulex_bench) - This example shows how to run load
-  tests against `Nebulex`.
+  tests for `Nebulex` using [basho_bench](https://github.com/mrallen1/basho_bench).

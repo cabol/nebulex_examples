@@ -6,12 +6,10 @@ defmodule EctoFallback.Application do
   use Application
 
   def start(_type, _args) do
-    import Supervisor.Spec, warn: false
-
     # Define workers and child supervisors to be supervised
     children = [
-      supervisor(EctoFallback.Repo, []),
-      supervisor(EctoFallback.Cache, [])
+      EctoFallback.Repo,
+      EctoFallback.Cache
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

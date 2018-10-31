@@ -5,9 +5,9 @@ defmodule PartitionedCache.Mixfile do
     [
       app: :partitioned_cache,
       version: "0.1.0",
-      elixir: "~> 1.4",
-      build_embedded: Mix.env == :prod,
-      start_permanent: Mix.env == :prod,
+      elixir: "~> 1.5",
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
   end
@@ -21,7 +21,7 @@ defmodule PartitionedCache.Mixfile do
 
   defp deps do
     [
-      {:nebulex, "~> 1.0.0-rc.3"},
+      {:nebulex, "~> 1.0"},
       {:jchash, "~> 0.1", app: false}
     ]
   end

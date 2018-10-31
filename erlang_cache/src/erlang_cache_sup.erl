@@ -34,9 +34,11 @@ init([]) ->
 %%====================================================================
 
 nbx_cache_child_spec() ->
-  {'NbxCache',
-   {'Elixir.NbxCache', start_link, []},
-   permanent,
-   infinity,
-   supervisor,
-   ['NbxCache']}.
+  {
+    'NbxCache',
+    {'Elixir.NbxCache', start_link, []},
+    permanent,
+    infinity,
+    supervisor,
+    ['NbxCache']
+  }.

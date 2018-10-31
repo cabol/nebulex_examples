@@ -4,14 +4,12 @@ defmodule PartitionedCache.Application do
   use Application
 
   def start(_type, _args) do
-    import Supervisor.Spec, warn: false
-
     # Setup the cluster
     :ok = setup_cluster()
 
     children = [
-      supervisor(PartitionedCache, []),
-      supervisor(PartitionedCache.Local, []),
+      PartitionedCache,
+      PartitionedCache.Local
     ]
 
     opts = [strategy: :one_for_one, name: PartitionedCache.Supervisor]

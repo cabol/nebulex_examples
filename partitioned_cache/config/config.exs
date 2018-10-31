@@ -2,14 +2,13 @@ use Mix.Config
 
 # Distributed Cache
 config :partitioned_cache, PartitionedCache,
-  adapter: Nebulex.Adapters.Dist,
   local: PartitionedCache.Local,
-  node_picker: PartitionedCache.NodePicker
+  node_selector: PartitionedCache.NodeSelector
 
 # Internal local cache used by PartitionedCache.Dist
 config :partitioned_cache, PartitionedCache.Local,
-  adapter: Nebulex.Adapters.Local,
-  gc_interval: 86_400 # 24 hrs
+  # 24 hrs
+  gc_interval: 86_400
 
 # NearCache config
 config :partitioned_cache,
