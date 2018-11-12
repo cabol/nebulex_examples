@@ -12,7 +12,3 @@ config :nebulex_ecto_example, NebulexEctoExample.Repo,
 
 config :nebulex_ecto_example, NebulexEctoExample.Cache,
   gc_interval: 86_400
-
-config :nebulex_ecto_example, NebulexEctoExample.CacheableRepo,
-  cache: NebulexEctoExample.Cache,
-  repo: NebulexEctoExample.Repo

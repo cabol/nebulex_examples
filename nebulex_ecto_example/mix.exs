@@ -21,7 +21,7 @@ defmodule NebulexEctoExample.Mixfile do
 
   defp deps do
     [
-      {:nebulex_ecto, github: "cabol/nebulex_ecto"},
+      {:nebulex_ecto, "~> 0.1"},
       {:ecto, "~> 2.0"},
       {:postgrex, "~> 0.11"}
     ]
