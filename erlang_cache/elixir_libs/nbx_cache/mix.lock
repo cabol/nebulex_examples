@@ -1,4 +1,4 @@
 %{
-  "nebulex": {:hex, :nebulex, "1.0.0", "6d331f2711e8c318cace41759c97fb8f9c1424abaac8dd1e1ca78a54ce9215b2", [:mix], [{:shards, "~> 0.6", [hex: :shards, repo: "hexpm", optional: false]}], "hexpm"},
-  "shards": {:hex, :shards, "0.6.0", "678d292ad74a4598a872930f9b12251f43e97f6050287f1fb712fbfd3d282f75", [:make, :rebar3], [], "hexpm"},
+  "nebulex": {:hex, :nebulex, "1.1.1", "4117e18e614ecbd078e19558b7b9c58f11d666c4dca584b9382b02913f13ad8a", [:mix], [{:shards, "~> 0.6", [hex: :shards, repo: "hexpm", optional: false]}], "hexpm"},
+  "shards": {:hex, :shards, "0.6.1", "fb248a6820e58548488933bc3ef889f9c4aeb23ef62a79e9332bbadcb4f62a13", [:make, :rebar3], [], "hexpm"},
 }

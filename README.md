@@ -9,7 +9,7 @@
   exist in cache) using a simple cache post-hook.
 
 * [Nebulex-Ecto Integration](./nebulex_ecto_example) - Integrate Nebulex and
-  Ecto extremely easy using [nebulex_ecto](https://github.com/cabol/nebulex_ecto).
+  Ecto extremely easy using [Nebulex Caching DSL](https://hexdocs.pm/nebulex/1.1.1/Nebulex.Caching.html#content).
 
 * [Erlang Example](./erlang_cache) - An example that illustrates how to use
   Nebulex from an Erlang app.

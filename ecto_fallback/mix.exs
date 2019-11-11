@@ -5,7 +5,7 @@ defmodule EctoFallback.Mixfile do
     [
       app: :ecto_fallback,
       version: "0.1.0",
-      elixir: "~> 1.5",
+      elixir: "~> 1.8",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       deps: deps()
@@ -14,16 +14,16 @@ defmodule EctoFallback.Mixfile do
 
   def application do
     [
-      applications: [:logger, :ecto, :postgrex],
+      applications: [:logger, :ecto_sql, :postgrex],
       mod: {EctoFallback.Application, []}
     ]
   end
 
   defp deps do
     [
-      {:nebulex, "~> 1.0"},
-      {:ecto, "~> 2.0"},
-      {:postgrex, "~> 0.11"}
+      {:nebulex, "~> 1.1"},
+      {:ecto_sql, "~> 3.0"},
+      {:postgrex, ">= 0.0.0"}
     ]
   end
 end

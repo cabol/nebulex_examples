@@ -3,7 +3,7 @@ use Mix.Config
 # Distributed Cache
 config :partitioned_cache, PartitionedCache,
   local: PartitionedCache.Local,
-  node_selector: PartitionedCache.NodeSelector
+  hash_slot: PartitionedCache.JumpingHashSlot
 
 # Internal local cache used by PartitionedCache.Dist
 config :partitioned_cache, PartitionedCache.Local,

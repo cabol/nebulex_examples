@@ -5,7 +5,7 @@ defmodule NebulexEctoExample.Mixfile do
     [
       app: :nebulex_ecto_example,
       version: "0.1.0",
-      elixir: "~> 1.4",
+      elixir: "~> 1.8",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       deps: deps()
@@ -14,16 +14,16 @@ defmodule NebulexEctoExample.Mixfile do
 
   def application do
     [
-      extra_applications: [:logger, :ecto, :postgrex],
+      extra_applications: [:logger, :ecto_sql, :postgrex],
       mod: {NebulexEctoExample.Application, []}
     ]
   end
 
   defp deps do
     [
-      {:nebulex_ecto, "~> 0.1"},
-      {:ecto, "~> 2.0"},
-      {:postgrex, "~> 0.11"}
+      {:nebulex, "~> 1.1"},
+      {:ecto_sql, "~> 3.0"},
+      {:postgrex, ">= 0.0.0"}
     ]
   end
 end

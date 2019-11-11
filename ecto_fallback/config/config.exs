@@ -4,7 +4,6 @@ config :ecto_fallback,
   ecto_repos: [EctoFallback.Repo]
 
 config :ecto_fallback, EctoFallback.Repo,
-  adapter: Ecto.Adapters.Postgres,
   database: "ecto_fallback_repo",
   username: "postgres",
   password: "postgres",

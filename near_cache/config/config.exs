@@ -12,7 +12,7 @@ config :near_cache, NearCache.L1,
 # L2 Cache
 config :near_cache, NearCache.L2,
   local: NearCache.L2.Primary,
-  node_selector: NearCache.NodeSelector
+  hash_slot: NearCache.JumpingHashSlot
 
 # Internal local cache used by NearCache.L2
 config :near_cache, NearCache.L2.Primary,

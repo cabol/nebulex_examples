@@ -4,7 +4,6 @@ config :nebulex_ecto_example,
   ecto_repos: [NebulexEctoExample.Repo]
 
 config :nebulex_ecto_example, NebulexEctoExample.Repo,
-  adapter: Ecto.Adapters.Postgres,
   database: "nebulex_ecto_example",
   username: "postgres",
   password: "postgres",
