@@ -55,7 +55,7 @@ to die: no data vulnerabilities.
 
 For more info you can check:
  * [Nebulex.Adapters.Multilevel](https://github.com/cabol/nebulex/blob/master/lib/nebulex/adapters/multilevel.ex)
- * [nebulex_ecto](https://github.com/cabol/nebulex_ecto)
+ * [Caching Decorators/Annotations](http://hexdocs.pm/nebulex/Nebulex.Caching.Decorators.html)
 
 ### References
 
@@ -72,7 +72,7 @@ In case you're wondering, this is how the partitioned cache would looks like:
 As shown in the figure, **Nebulex** distributed caches in nodes are connected
 each other, this happens once the Elixir cluster is setup. Then, **Nebulex**
 distribute the load across cluster nodes automatically, and to do so, we
-provide our own [NodePicker](lib/near_cache/node_picker.ex) implementation,
+provide our own [HashSlot](lib/near_cache/jumping_hash_slot.ex) implementation,
 which uses [Jump Consistent Hash](https://arxiv.org/abs/1406.2294) algorithm.
 
 ## Getting started

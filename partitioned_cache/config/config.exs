@@ -2,11 +2,10 @@ use Mix.Config
 
 # Distributed Cache
 config :partitioned_cache, PartitionedCache,
-  local: PartitionedCache.Local,
-  hash_slot: PartitionedCache.JumpingHashSlot
+  local: PartitionedCache.Local
 
 # Internal local cache used by PartitionedCache.Dist
-config :partitioned_cache, PartitionedCache.Local,
+config :partitioned_cache, PartitionedCache.Primary,
   # 24 hrs
   gc_interval: 86_400
 

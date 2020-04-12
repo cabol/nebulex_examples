@@ -9,7 +9,7 @@ defmodule PartitionedCache.Application do
 
     children = [
       PartitionedCache,
-      PartitionedCache.Local
+      PartitionedCache.Primary
     ]
 
     opts = [strategy: :one_for_one, name: PartitionedCache.Supervisor]

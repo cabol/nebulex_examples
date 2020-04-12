@@ -21,7 +21,7 @@ defmodule NebulexEctoExample.Mixfile do
 
   defp deps do
     [
-      {:nebulex, "~> 1.1"},
+      {:nebulex, "~> 1.2"},
       {:ecto_sql, "~> 3.0"},
       {:postgrex, ">= 0.0.0"}
     ]

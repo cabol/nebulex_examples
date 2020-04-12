@@ -1,9 +1,11 @@
 defmodule PartitionedCache do
   use Nebulex.Cache,
     otp_app: :partitioned_cache,
-    adapter: Nebulex.Adapters.Dist
+    adapter: Nebulex.Adapters.Partitioned,
+    primary: PartitionedCache.Primary,
+    hash_slot: PartitionedCache.JumpingHashSlot
 
-  defmodule Local do
+  defmodule Primary do
     use Nebulex.Cache,
       otp_app: :partitioned_cache,
       adapter: Nebulex.Adapters.Local

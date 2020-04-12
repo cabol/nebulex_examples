@@ -1,7 +1,9 @@
 defmodule NearCache do
   use Nebulex.Cache,
     otp_app: :near_cache,
-    adapter: Nebulex.Adapters.Multilevel
+    adapter: Nebulex.Adapters.Multilevel,
+    cache_model: :inclusive,
+    levels: [NearCache.L1, NearCache.L2]
 
   use NearCache.Hooks
 
@@ -14,7 +16,9 @@ defmodule NearCache do
   defmodule L2 do
     use Nebulex.Cache,
       otp_app: :near_cache,
-      adapter: Nebulex.Adapters.Dist
+      adapter: Nebulex.Adapters.Partitioned,
+      primary: NearCache.L2.Primary,
+      hash_slot: NearCache.JumpingHashSlot
 
     defmodule Primary do
       use Nebulex.Cache,

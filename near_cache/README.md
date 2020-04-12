@@ -61,21 +61,18 @@ For more info you can check:
 ## Near Cache with Nebulex
 
 In this example, the near cache is composed by two caching levels:
- - L1 - Local cache (nearest): [NearCache.Local](lib/near_cache/local.ex)
- - L2 - Distributed cache: [NearCache.Dist](lib/near_cache/dist.ex)
+ - L1 - Local cache (nearest): `NearCache.L1`.
+ - L2 - partitioned cache: `NearCache.L2`.
 
-Besides, we have a multi-level cache module [NearCache.Multilevel](lib/near_cache/multilevel.ex)
-in order to encapsulate these two cache levels mentioned before.
-
-And finally, the main interface, our near cache module [NearCache](lib/near_cache.ex),
-which is basically a wrapper on top of the multi-level and distributed cache.
+The multi-level cache is defined in the module [NearCache](lib/near_cache.ex),
+which is basically a wrapper on top of the multi-level and partitioned cache.
 The purpose of this module is to abstract the access to the multi-level and
-distributed cache, for example, the `get` and `get!` calls should be forwarded
+partitioned cache, for example, the `get` and `get!` calls should be forwarded
 to `NearCache.Multilevel`, so the multi-level logic can be done. Multi-level
 cache checks the fastest (L1 cache first), and if it hits, it proceeds at high
 speed. If that first cache misses, the next fastest cache (L2 cache) is checked,
-and so on. The rest of the calls in our example are forwarded to the distributed
-cache `NearCache.Dist`.
+and so on. The rest of the calls in our example are forwarded to the partitioned
+cache `NearCache.L2`.
 
 This near cache also has a post hook to log all `get` and `get!` commands, others
 are skipped. In this way, we'll able to see what cache level the data was
@@ -90,7 +87,7 @@ In case you're wondering, this is how the near-cache would looks like:
 As shown in the figure, **Nebulex** distributed caches in nodes are connected
 each other, this happens once the Elixir cluster is setup. Then, they work
 automatically distributing the load across cluster nodes, and to do so, we
-provide our own [NodePicker](lib/near_cache/node_picker.ex) implementation,
+provide our own [HashSlot](lib/near_cache/jumping_hash_slot.ex) implementation,
 which uses [Jump Consistent Hash](https://arxiv.org/abs/1406.2294) algorithm.
 
 ## Getting started

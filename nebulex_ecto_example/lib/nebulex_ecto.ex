@@ -1,21 +1,24 @@
 defmodule NebulexEctoExample do
   @moduledoc false
 
-  import Nebulex.Caching
+  use Nebulex.Caching.Decorators
 
   alias NebulexEctoExample.{Cache, Person, Repo}
 
-  defcacheable get_person(id), cache: Cache, key: {Person, id} do
+  @decorate cache(cache: Cache, key: {Person, id})
+  def get_person(id) do
     Repo.get(Person, id)
   end
 
-  defupdatable update_person!(%Person{} = person, attrs), cache: Cache, key: {Person, person.id} do
+  @decorate update(cache: Cache, key: {Person, person.id})
+  def update_person!(%Person{} = person, attrs) do
     person
     |> Person.changeset(attrs)
     |> Repo.update!()
   end
 
-  defevict delete_person(%Person{} = person), cache: Cache, key: {Person, person.id} do
+  @decorate evict(cache: Cache, key: {Person, person.id})
+  def delete_person(%Person{} = person) do
     Repo.delete(person)
   end
 end

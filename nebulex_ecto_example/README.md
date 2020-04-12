@@ -2,11 +2,10 @@
 
 This example illustrates how to integrate [Nebulex](https://github.com/cabol/nebulex)
 and [Ecto](https://github.com/elixir-ecto/ecto) extremely easy, using
-[Nebulex Caching DSL](https://hexdocs.pm/nebulex/1.1.1/Nebulex.Caching.html#content).
+[Caching Annotations](http://hexdocs.pm/nebulex/Nebulex.Caching.Decorators.html).
 
-Also, check this guide too: [Cache Usage Patterns via Nebulex.Caching DSL](https://hexdocs.pm/nebulex/1.1.1/caching-dsl.html#content)
-
-Let's see how it works!
+See also:
+[Cache Usage Patterns via Nebulex.Caching.Decorators](http://hexdocs.pm/nebulex/caching-decorators.html)
 
 ## Getting started
 

@@ -21,7 +21,7 @@ defmodule NebulexBench.Mixfile do
 
   defp deps do
     [
-      {:nebulex, "~> 1.1"},
+      {:nebulex, "~> 1.2"},
       {:basho_bench, github: "mrallen1/basho_bench", ref: "mra-rebar3"}
     ]
   end
