@@ -1,12 +1,23 @@
 use Mix.Config
 
 # L1 Cache
-config :near_cache, NearCache.L1,
-  gc_interval: 86_400
-
-# Internal local cache used by NearCache.L2
-config :near_cache, NearCache.L2.Primary,
-  gc_interval: 86_400
+config :near_cache, NearCache,
+  model: :inclusive,
+  levels: [
+    l1: [
+      adapter: Nebulex.Adapters.Local,
+      gc_interval: :timer.seconds(86_400),
+      backend: :shards
+    ],
+    l2: [
+      adapter: Nebulex.Adapters.Partitioned,
+      primary: [
+        adapter: Nebulex.Adapters.Local,
+        gc_interval: :timer.seconds(86_400),
+        backend: :shards
+      ]
+    ]
+  ]
 
 # NearCache config
 config :near_cache,

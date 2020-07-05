@@ -10,4 +10,4 @@ config :nebulex_ecto_example, NebulexEctoExample.Repo,
   hostname: "localhost"
 
 config :nebulex_ecto_example, NebulexEctoExample.Cache,
-  gc_interval: 86_400
+  gc_interval: :timer.seconds(86_400)

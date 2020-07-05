@@ -8,11 +8,10 @@ defmodule PartitionedCache.Application do
     :ok = setup_cluster()
 
     children = [
-      PartitionedCache,
-      PartitionedCache.Primary
+      PartitionedCache
     ]
 
-    opts = [strategy: :one_for_one, name: PartitionedCache.Supervisor]
+    opts = [strategy: :one_for_one, name: PartitionedCache.Application.Supervisor]
     Supervisor.start_link(children, opts)
   end
 

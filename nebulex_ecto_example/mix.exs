@@ -1,11 +1,11 @@
-defmodule NebulexEctoExample.Mixfile do
+defmodule NebulexEctoExample.MixProject do
   use Mix.Project
 
   def project do
     [
       app: :nebulex_ecto_example,
       version: "0.1.0",
-      elixir: "~> 1.8",
+      elixir: "~> 1.9",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       deps: deps()
@@ -21,8 +21,10 @@ defmodule NebulexEctoExample.Mixfile do
 
   defp deps do
     [
-      {:nebulex, "~> 1.2"},
-      {:ecto_sql, "~> 3.0"},
+      {:nebulex, "~> 2.0-pre"},
+      {:shards, "~> 0.6"},
+      {:decorator, "~> 1.3"},
+      {:ecto_sql, "~> 3.4"},
       {:postgrex, ">= 0.0.0"}
     ]
   end

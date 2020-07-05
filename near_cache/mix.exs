@@ -1,11 +1,11 @@
-defmodule NearCache.Mixfile do
+defmodule NearCache.MixProject do
   use Mix.Project
 
   def project do
     [
       app: :near_cache,
       version: "0.1.0",
-      elixir: "~> 1.8",
+      elixir: "~> 1.9",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       deps: deps()
@@ -21,7 +21,9 @@ defmodule NearCache.Mixfile do
 
   defp deps do
     [
-      {:nebulex, "~> 1.2"},
+      {:nebulex, "~> 2.0-pre"},
+      {:shards, "~> 0.6"},
+      {:decorator, "~> 1.3"},
       {:jchash, "~> 0.1", app: false}
     ]
   end

@@ -2,18 +2,16 @@
 
 This example illustrates how to integrate [Nebulex](https://github.com/cabol/nebulex)
 and [Ecto](https://github.com/elixir-ecto/ecto) extremely easy, using
-[Caching Annotations](http://hexdocs.pm/nebulex/Nebulex.Caching.Decorators.html).
+[declarative annotation-based caching via decorators](http://hexdocs.pm/nebulex/Nebulex.Caching.html).
 
-See also:
-[Cache Usage Patterns via Nebulex.Caching.Decorators](http://hexdocs.pm/nebulex/caching-decorators.html)
+See also [Cache Usage Patterns](http://hexdocs.pm/nebulex/cache-usage-patterns.html)
 
 ## Getting started
 
 First of all, let's setup the database:
 
 ```
-$ mix ecto.create
-$ mix ecto.migrate
+$ mix ecto.create && mix ecto.migrate
 ```
 
 Now we have the database setup and ready to be used.
@@ -124,4 +122,4 @@ iex(13)> NebulexEctoExample.Cache.get({Person, 1})
 nil
 ```
 
-It works! You can continue testing more functions!
+Now you can continue testing more functions!

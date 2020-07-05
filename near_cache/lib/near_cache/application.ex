@@ -9,13 +9,10 @@ defmodule NearCache.Application do
 
     # Define workers and child supervisors to be supervised
     children = [
-      NearCache.L2.Primary,
-      NearCache.L2,
-      NearCache.L1,
       NearCache
     ]
 
-    opts = [strategy: :one_for_one, name: NearCache.Supervisor]
+    opts = [strategy: :one_for_one, name: NearCache.Application.Supervisor]
     Supervisor.start_link(children, opts)
   end
 

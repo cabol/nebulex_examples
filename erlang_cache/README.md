@@ -42,13 +42,10 @@ out Erlang app, let's run a [simple test example](src/erlang_cache.erl):
 Testing or 'NbxCache' ...
 
 #==> 'Elixir.NbxCache':get(my_key) -> nil
-#==> 'Elixir.NbxCache':set(my_key, hello) -> hello
+#==> 'Elixir.NbxCache':set(my_key, hello) -> ok
 #==> 'Elixir.NbxCache':get(my_key) -> hello
-#==> 'Elixir.NbxCache':delete(my_key) -> my_key
+#==> 'Elixir.NbxCache':delete(my_key) -> ok
 #==> 'Elixir.NbxCache':get(my_key) -> nil
-
-#==> STATS:
-[{delete,1},{get_miss_count,2},{get,1},{set,1}]
 ok
 ```
 

@@ -1,11 +1,11 @@
-defmodule NebulexBench.Mixfile do
+defmodule NebulexBench.MixProject do
   use Mix.Project
 
   def project do
     [
       app: :nebulex_bench,
       version: "0.1.0",
-      elixir: "~> 1.8",
+      elixir: "~> 1.9",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       deps: deps()
@@ -21,7 +21,8 @@ defmodule NebulexBench.Mixfile do
 
   defp deps do
     [
-      {:nebulex, "~> 1.2"},
+      {:nebulex, "~> 2.0-pre"},
+      {:shards, "~> 0.6"},
       {:basho_bench, github: "mrallen1/basho_bench", ref: "mra-rebar3"}
     ]
   end

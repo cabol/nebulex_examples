@@ -54,8 +54,8 @@ Therefore, there is never a moment when the cluster is not ready for any server
 to die: no data vulnerabilities.
 
 For more info you can check:
- * [Nebulex.Adapters.Multilevel](https://github.com/cabol/nebulex/blob/master/lib/nebulex/adapters/multilevel.ex)
- * [Caching Decorators/Annotations](http://hexdocs.pm/nebulex/Nebulex.Caching.Decorators.html)
+ * [Nebulex.Adapters.Multilevel](http://hexdocs.pm/nebulex/Nebulex.Adapters.Multilevel.html)
+ * [Caching Decorators/Annotations](http://hexdocs.pm/nebulex/Nebulex.Caching.html)
 
 ### References
 
@@ -113,7 +113,7 @@ Now that we have the cluster ready to be used by our cache, let's try it out!
 For example, from node 1 let's save some data:
 
 ```elixir
-iex(node1@127.0.0.1)> PartitionedCache.set "foo", "bar"
+iex(node1@127.0.0.1)> PartitionedCache.put "foo", "bar"
 "bar"
 ```
 
@@ -124,7 +124,7 @@ iex(node2@127.0.0.1)> PartitionedCache.get "foo"
 "bar"
 ```
 
-And from node 3:
+From a different node:
 
 ```elixir
 iex(node3@127.0.0.1)> PartitionedCache.get "foo"

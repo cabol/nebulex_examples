@@ -5,14 +5,13 @@
   {mod, {erlang_cache_app, []}},
   {included_applications, [
     nbx_cache,
-    nebulex,
-    ex_shards,
     shards
   ]},
   {applications, [
     kernel,
     stdlib,
-    elixir
+    elixir,
+    nebulex
   ]},
   {env,[]},
   {modules, []},

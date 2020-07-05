@@ -50,9 +50,7 @@ process, it is only executed on cache misses (Database is the fallback or
 level 3 – L3). Therefore, there is never a moment when the cluster is not ready
 for any server to die: no data vulnerabilities.
 
-For more info you can check:
- * [Nebulex.Adapters.Multilevel](https://github.com/cabol/nebulex/blob/master/lib/nebulex/adapters/multilevel.ex)
- * [nebulex_ecto](https://github.com/cabol/nebulex_ecto)
+For more info check [Nebulex.Adapters.Multilevel](http://hexdocs.pm/nebulex/Nebulex.Adapters.Multilevel.html).
 
 ### References
 
@@ -61,8 +59,8 @@ For more info you can check:
 ## Near Cache with Nebulex
 
 In this example, the near cache is composed by two caching levels:
- - L1 - Local cache (nearest): `NearCache.L1`.
- - L2 - partitioned cache: `NearCache.L2`.
+ - L1 - Local cache (nearest).
+ - L2 - partitioned cache.
 
 The multi-level cache is defined in the module [NearCache](lib/near_cache.ex),
 which is basically a wrapper on top of the multi-level and partitioned cache.
@@ -72,7 +70,7 @@ to `NearCache.Multilevel`, so the multi-level logic can be done. Multi-level
 cache checks the fastest (L1 cache first), and if it hits, it proceeds at high
 speed. If that first cache misses, the next fastest cache (L2 cache) is checked,
 and so on. The rest of the calls in our example are forwarded to the partitioned
-cache `NearCache.L2`.
+cache L2.
 
 This near cache also has a post hook to log all `get` and `get!` commands, others
 are skipped. In this way, we'll able to see what cache level the data was
@@ -104,34 +102,32 @@ Now let's do some tests:
 ```elixir
 # check there is nothing cached yet
 iex(1)> NearCache.get "foo"
-[debug] Elixir.NearCache.L1.get("foo", []) ==> nil
-[debug] Elixir.NearCache.L2.get("foo", []) ==> nil
 nil
 
-# let's save some data
-# data will be saved into the distributed cache – level 2 (L2)
-iex(2)> NearCache.L2.set "foo", "bar"
+# since the cache is inclusive, let how the values are replicated
+iex(2)> NearCache.put "foo", "bar", level: 2
+:ok
+
+iex(1)> NearCache.get "foo", level: 1
+nil
+
+iex(1)> NearCache.get "foo", level: 2
 "bar"
 
-# let's try to retrieve the data again
-iex(3)> NearCache.get "foo"
-[debug] Elixir.NearCache.L1.get("foo", []) ==> nil
-[debug] Elixir.NearCache.L2.get("foo", []) ==> "bar"
+# value should be replicated to the other levels
+iex(1)> NearCache.get "foo"
+"bar"
+
+iex(1)> NearCache.get "foo", level: 1
+"bar"
+
+iex(1)> NearCache.get "foo", level: 2
 "bar"
 ```
 
-As you can see, the data was found into the L2 cache (distributed cache), as we
-expected. Now, let's retrieve the data again:
-
-```elixir
-iex(4)> NearCache.get! "foo"
-[debug] Elixir.NearCache.L1.get("foo", []) ==> "bar"
-[debug] Elixir.NearCache.L2.get("foo", []) ==> "bar"
-"bar"
-```
-
-The data has been retrieved from the nearest cache, L1 in this case. The
-multi-level cache did the work!
+As you can see, the data was found into the L2 and then it was replicated to the
+previous/nearer levels. From that moment on, the key `"foo"` is retrieved from
+L1 (the nearest cache). The multi-level cache did the work!
 
 ## Distributed environment
 
@@ -164,7 +160,7 @@ Now that we have the cluster ready to be used by our near cache, let's
 try it out, save some data on node 1:
 
 ```elixir
-iex(node1@127.0.0.1)> NearCache.set "foo", "bar"
+iex(node1@127.0.0.1)> NearCache.put "foo", "bar"
 "bar"
 ```
 
@@ -172,8 +168,6 @@ Retrieve that saved data from other node, for example from node2:
 
 ```elixir
 iex(node2@127.0.0.1)> NearCache.get "foo"
-[debug] Elixir.NearCache.L1.get("foo", []) ==> nil
-[debug] Elixir.NearCache.L2.get("foo", []) ==> "bar"
 "bar"
 ```
 
@@ -181,20 +175,10 @@ And from node 3:
 
 ```elixir
 iex(node3@127.0.0.1)> NearCache.get "foo"
-[debug] Elixir.NearCache.L1.get("foo", []) ==> nil
-[debug] Elixir.NearCache.L2.get("foo", []) ==> "bar"
 "bar"
 ```
 
-Seems to be working as expected, as you can see the data was retrieved from L2
-cache (distributed cache) at first time, now let's do it again:
-
-```elixir
-iex(node2@127.0.0.1)> NearCache.get "foo"
-[debug] Elixir.NearCache.L1.get("foo", []) ==> "bar"
-[debug] Elixir.NearCache.L2.get("foo", []) ==> "bar"
-"bar"
-```
-
-This time the data was retrieved from L1 cache, it is now in the nearest cache,
-the multi-level cache did the work again!
+It seems to be working as expected, as you can see the data is retrieved from
+the L2 cache (partitioned cache) at first time, and the replicated to
+previous/nearer levels. The next time, the key `"foo"` will be retrieved from L1
+(the nearest cache).

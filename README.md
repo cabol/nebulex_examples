@@ -6,10 +6,10 @@
   all built-in adapters (Multilevel, Distributed and Local).
 
 * [Nebulex-Ecto Integration](./nebulex_ecto_example) - Integrate Nebulex and
-  Ecto extremely easy using [Caching Annotations](http://hexdocs.pm/nebulex/Nebulex.Caching.Decorators.html).
+  Ecto extremely easy using [declarative annotation-based caching via decorators](http://hexdocs.pm/nebulex/Nebulex.Caching.html).
 
-* [Ecto Fallback](./ecto_fallback) - Database fallback (in case the key doesn't
-  exist in cache) using a simple cache post-hook.
+* [Instrumenting Caches with Telemetry](./nebulex_telemetry_example) - An example
+  that illustrates how to instrument our Nebulex caches using Telemetry.
 
 * [Erlang Example](./erlang_cache) - An example that illustrates how to use
   Nebulex from an Erlang app.

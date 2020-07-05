@@ -68,9 +68,8 @@ $ ./deps/basho_bench/priv/gp_latencies.sh -d "tests/current" -k "mean"
 
 ### Test Environment:
 
- * Operating System: macOS High Sierra
- * CPU Information: Intel(R) Core(TM) i7-6700HQ CPU @ 2.60GHz
- * Number of Available Cores: 8
- * Available memory: 16 GB
- * Elixir 1.7.2
- * Erlang 21.0
+ * Operating System: macOS Mojave
+ * Processor: 2,3 GHz Intel Core i9 (8 cores, 16 HW threads)
+ * Memory: 16 GB 2400 MHz DDR4
+ * Elixir 1.10.3
+ * Erlang 22.3

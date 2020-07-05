@@ -1,13 +1,12 @@
 use Mix.Config
 
-# Distributed Cache
+# Partitioned Cache
 config :partitioned_cache, PartitionedCache,
-  local: PartitionedCache.Local
-
-# Internal local cache used by PartitionedCache.Dist
-config :partitioned_cache, PartitionedCache.Primary,
-  # 24 hrs
-  gc_interval: 86_400
+  hash_slot: PartitionedCache.JumpingHashSlot,
+  primary: [
+    gc_interval: :timer.seconds(86_400),
+    backend: :shards
+  ]
 
 # NearCache config
 config :partitioned_cache,
