@@ -1,4 +1,4 @@
-defmodule NebulexEctoExample.Cache do
+defmodule NebulexTelemetryExample.Cache do
   use Nebulex.Cache,
     otp_app: :nebulex_telemetry_example,
     adapter: Nebulex.Adapters.Local

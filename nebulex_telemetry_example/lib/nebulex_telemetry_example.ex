@@ -1,9 +1,9 @@
-defmodule NebulexEctoExample do
+defmodule NebulexTelemetryExample do
   @moduledoc false
 
   use Nebulex.Caching
 
-  alias NebulexEctoExample.Cache
+  alias NebulexTelemetryExample.Cache
 
   @decorate cacheable(cache: Cache, key: {:test, map.key}, match: &match_fun/1)
   def get_something(map) do

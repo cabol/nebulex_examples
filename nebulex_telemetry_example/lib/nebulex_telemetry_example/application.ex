@@ -1,15 +1,15 @@
-defmodule NebulexEctoExample.Application do
+defmodule NebulexTelemetryExample.Application do
   @moduledoc false
 
   use Application
 
   def start(_type, _args) do
     children = [
-      NebulexEctoExample.Cache,
-      NebulexEctoExample.Telemetry
+      NebulexTelemetryExample.Cache,
+      NebulexTelemetryExample.Telemetry
     ]
 
-    opts = [strategy: :one_for_one, name: NebulexEctoExample.Supervisor]
+    opts = [strategy: :one_for_one, name: NebulexTelemetryExample.Supervisor]
     Supervisor.start_link(children, opts)
   end
 end

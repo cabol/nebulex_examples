@@ -1,11 +1,11 @@
-defmodule NebulexTelemetryExample.MixProject do
+defmodule RedisCache.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :nebulex_telemetry_example,
+      app: :redis_cache,
       version: "0.1.0",
-      elixir: "~> 1.9",
+      elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -15,17 +15,16 @@ defmodule NebulexTelemetryExample.MixProject do
   def application do
     [
       extra_applications: [:logger],
-      mod: {NebulexTelemetryExample.Application, []}
+      mod: {RedisCache.Application, []}
     ]
   end
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:nebulex, "~> 2.0.0-rc.1"},
-      {:decorator, "~> 1.3"},
-      {:telemetry_metrics, "~> 0.5"},
-      {:telemetry_poller, "~> 0.5"}
+      {:nebulex_redis_adapter, "~> 2.0.0-rc.1"},
+      {:crc, "~> 0.10"},
+      {:jchash, "~> 0.1.2"}
     ]
   end
 end

@@ -21,10 +21,13 @@ defmodule PartitionedCache.MixProject do
 
   defp deps do
     [
-      {:nebulex, "~> 2.0-pre"},
-      {:shards, "~> 0.6"},
+      {:nebulex, "2.0.0-rc.1"},
+      {:shards, "~> 1.0"},
       {:decorator, "~> 1.3"},
-      {:jchash, "~> 0.1", app: false}
+      {:jchash, "~> 0.1", app: false},
+      {:telemetry, "~> 0.4"},
+      {:telemetry_metrics, "~> 0.6"},
+      {:telemetry_poller, "~> 0.5"}
     ]
   end
 end

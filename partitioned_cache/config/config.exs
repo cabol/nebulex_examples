@@ -1,8 +1,9 @@
-use Mix.Config
+import Config
 
 # Partitioned Cache
 config :partitioned_cache, PartitionedCache,
-  hash_slot: PartitionedCache.JumpingHashSlot,
+  stats: true,
+  keyslot: PartitionedCache.JumpingHashSlot,
   primary: [
     gc_interval: :timer.seconds(86_400),
     backend: :shards

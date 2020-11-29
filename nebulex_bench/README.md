@@ -18,7 +18,11 @@ Then, to start the load tests we should execute the next functions:
 :basho_bench.start()
 
 :basho_bench.setup_benchmark([])
+```
 
+Then, for running the benchmark for the cache with the local adapter:
+
+```elixir
 :basho_bench.run_benchmark(['./bench/local_cache_bench.config'])
 ```
 
@@ -44,7 +48,13 @@ Once the bench finishes:
 23:10:22.513 [info] module=basho_bench_stats_writer_csv event=stop stats_sink=csv
 ```
 
-And finally, you can find the test results within the folder [tests](./tests).
+You can also run the benchmark for the cache with the partitioned adapter:
+
+```elixir
+:basho_bench.run_benchmark(['./bench/partitioned_cache_bench.config'])
+```
+
+Finally, you can find the test results within the folder [tests](./tests).
 
 To plot the results, you need to install `gnuplot`, and then run for throughput:
 

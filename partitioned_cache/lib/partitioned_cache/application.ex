@@ -8,7 +8,8 @@ defmodule PartitionedCache.Application do
     :ok = setup_cluster()
 
     children = [
-      PartitionedCache
+      PartitionedCache,
+      PartitionedCache.Telemetry
     ]
 
     opts = [strategy: :one_for_one, name: PartitionedCache.Application.Supervisor]

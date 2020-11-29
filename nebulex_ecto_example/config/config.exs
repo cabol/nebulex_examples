@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 config :nebulex_ecto_example,
   ecto_repos: [NebulexEctoExample.Repo]

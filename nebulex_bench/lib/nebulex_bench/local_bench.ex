@@ -1,4 +1,4 @@
-defmodule NebulexBench.Bench do
+defmodule NebulexBench.LocalBench do
   @moduledoc false
 
   alias NebulexBench.LocalCache, as: Cache

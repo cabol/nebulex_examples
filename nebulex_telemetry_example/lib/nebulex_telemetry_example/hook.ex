@@ -1,4 +1,4 @@
-defmodule NebulexEctoExample.Profiling do
+defmodule NebulexTelemetryExample.Profiling do
   alias Nebulex.Hook
 
   def prof(%Hook{step: :before}) do
@@ -11,10 +11,10 @@ defmodule NebulexEctoExample.Profiling do
   end
 end
 
-defmodule NebulexEctoExample.Hoook do
+defmodule NebulexTelemetryExample.Hoook do
   use Nebulex.Hook
 
-  @decorate around(&NebulexEctoExample.Profiling.prof/1)
+  @decorate around(&NebulexTelemetryExample.Profiling.prof/1)
   def test(var) do
     :ok = Process.sleep(1000)
     var

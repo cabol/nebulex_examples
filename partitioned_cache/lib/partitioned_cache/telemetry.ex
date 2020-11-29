@@ -1,4 +1,4 @@
-defmodule NebulexTelemetryExample.Telemetry do
+defmodule PartitionedCache.Telemetry do
   use Supervisor
   import Telemetry.Metrics
 
@@ -9,7 +9,7 @@ defmodule NebulexTelemetryExample.Telemetry do
   def init(_arg) do
     children = [
       # Configure `:telemetry_poller` for reporting the cache stats
-      {:telemetry_poller, measurements: periodic_measurements(), period: 10_000},
+      {:telemetry_poller, measurements: periodic_measurements(), period: 60_000},
 
       # For example, we use the console reporter, but you can change it.
       # See `:telemetry_metrics` for for information.
@@ -26,23 +26,13 @@ defmodule NebulexTelemetryExample.Telemetry do
       last_value("nebulex.cache.stats.misses", tags: [:cache]),
       last_value("nebulex.cache.stats.writes", tags: [:cache]),
       last_value("nebulex.cache.stats.evictions", tags: [:cache]),
-      last_value("nebulex.cache.stats.expirations", tags: [:cache]),
-
-      # Nebulex custom Metrics
-      last_value("nebulex.cache.size.value", tags: [:cache]),
-
-      # VM Metrics
-      summary("vm.memory.total", unit: {:byte, :kilobyte}),
-      summary("vm.total_run_queue_lengths.total"),
-      summary("vm.total_run_queue_lengths.cpu"),
-      summary("vm.total_run_queue_lengths.io")
+      last_value("nebulex.cache.stats.expirations", tags: [:cache])
     ]
   end
 
   defp periodic_measurements do
     [
-      {NebulexTelemetryExample.Cache, :dispatch_stats, []},
-      {NebulexTelemetryExample.Cache, :dispatch_cache_size, []}
+      {PartitionedCache, :dispatch_stats, []}
     ]
   end
 end

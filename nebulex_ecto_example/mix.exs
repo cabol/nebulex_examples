@@ -21,8 +21,8 @@ defmodule NebulexEctoExample.MixProject do
 
   defp deps do
     [
-      {:nebulex, "~> 2.0-pre"},
-      {:shards, "~> 0.6"},
+      {:nebulex, "~> 2.0.0-rc.1"},
+      {:shards, "~> 1.0"},
       {:decorator, "~> 1.3"},
       {:ecto_sql, "~> 3.4"},
       {:postgrex, ">= 0.0.0"}
