@@ -8,8 +8,8 @@ This example defines four caches:
     `:standalone` mode with a single Redis node.
 
   - `RedisCache.ClientCluster` - This cache uses the `NebulexRedisAdapter` in
-    `:cluster` mode (client-based cluster) with a three standalone Redis nodes;
-    since the cluster is provided from client-side.
+    `:client_side_cluster` mode (client-based cluster) with a three standalone
+    Redis nodes; since the cluster is provided from client-side.
 
   - `RedisCache.RedisCluster` - This cache uses the `NebulexRedisAdapter` in
     `:redis_cluster` mode with five Redis cluster nodes.

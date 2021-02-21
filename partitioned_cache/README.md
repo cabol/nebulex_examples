@@ -83,7 +83,9 @@ First of all let's run:
 $ mix deps.get
 ```
 
-We are going to create a three nodes cluster, so let's open three Elixir consoles,
+We are going to create a three nodes cluster, so let's open three Elixir
+consoles.
+
 Node 1:
 
 ```

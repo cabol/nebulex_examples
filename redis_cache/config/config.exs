@@ -9,7 +9,7 @@ config :redis_cache, RedisCache.Standalone,
 
 # Redis in client-cluster mode
 config :redis_cache, RedisCache.ClientCluster,
-  mode: :cluster,
+  mode: :client_side_cluster,
   nodes: [
     node1: [
       conn_opts: [

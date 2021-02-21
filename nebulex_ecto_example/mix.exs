@@ -5,7 +5,7 @@ defmodule NebulexEctoExample.MixProject do
     [
       app: :nebulex_ecto_example,
       version: "0.1.0",
-      elixir: "~> 1.9",
+      elixir: "~> 1.10",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       deps: deps()
@@ -21,7 +21,7 @@ defmodule NebulexEctoExample.MixProject do
 
   defp deps do
     [
-      {:nebulex, "~> 2.0.0-rc.1"},
+      {:nebulex, "~> 2.0"},
       {:shards, "~> 1.0"},
       {:decorator, "~> 1.3"},
       {:ecto_sql, "~> 3.4"},

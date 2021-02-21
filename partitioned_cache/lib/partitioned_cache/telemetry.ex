@@ -25,6 +25,7 @@ defmodule PartitionedCache.Telemetry do
       last_value("nebulex.cache.stats.hits", tags: [:cache]),
       last_value("nebulex.cache.stats.misses", tags: [:cache]),
       last_value("nebulex.cache.stats.writes", tags: [:cache]),
+      last_value("nebulex.cache.stats.updates", tags: [:cache]),
       last_value("nebulex.cache.stats.evictions", tags: [:cache]),
       last_value("nebulex.cache.stats.expirations", tags: [:cache])
     ]

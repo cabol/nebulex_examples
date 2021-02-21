@@ -4,8 +4,7 @@
   {registered, []},
   {mod, {erlang_cache_app, []}},
   {included_applications, [
-    nbx_cache,
-    shards
+    nbx_cache
   ]},
   {applications, [
     kernel,

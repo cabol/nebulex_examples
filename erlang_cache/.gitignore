@@ -1,5 +1,6 @@
 .rebar3
 _*
+!_checkouts
 .eunit
 *.o
 *.beam

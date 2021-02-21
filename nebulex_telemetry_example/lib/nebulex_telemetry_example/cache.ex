@@ -3,8 +3,6 @@ defmodule NebulexTelemetryExample.Cache do
     otp_app: :nebulex_telemetry_example,
     adapter: Nebulex.Adapters.Local
 
-  use Nebulex.Cache.Stats
-
   def dispatch_cache_size do
     :telemetry.execute(
       [:nebulex, :cache, :size],

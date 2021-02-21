@@ -1,5 +1,11 @@
 # erlang_cache
 
+**NOTE:** This example is broken at the moment due to issues with the Elixir
+plugin. In the future it should use [rebar_mix](https://github.com/Supersonido/rebar_mix)
+but it doesn't support local dependencies yet (`_checkouts` in rebar3); waiting
+for [this issue](https://github.com/Supersonido/rebar_mix/issues/13) to be
+fixed.
+
 This example illustrates how to use [Nebulex](https://github.com/cabol/nebulex)
 from an Erlang app using the [rebar3_elixir_compile plugin](https://github.com/barrel-db/rebar3_elixir_compile).
 

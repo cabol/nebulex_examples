@@ -5,7 +5,7 @@ defmodule NebulexTelemetryExample.MixProject do
     [
       app: :nebulex_telemetry_example,
       version: "0.1.0",
-      elixir: "~> 1.9",
+      elixir: "~> 1.10",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -22,10 +22,11 @@ defmodule NebulexTelemetryExample.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:nebulex, "~> 2.0.0-rc.1"},
+      {:nebulex, "~> 2.0"},
       {:decorator, "~> 1.3"},
       {:telemetry_metrics, "~> 0.5"},
-      {:telemetry_poller, "~> 0.5"}
+      {:telemetry_poller, "~> 0.5"},
+      {:telemetry_metrics_statsd, "~> 0.5.0"}
     ]
   end
 end

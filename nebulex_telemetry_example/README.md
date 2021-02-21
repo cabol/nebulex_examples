@@ -52,6 +52,10 @@ Metric measurement: :writes (last_value)
 With value: 2
 Tag values: %{cache: NebulexTelemetryExample.Cache}
 
+Metric measurement: :updates (last_value)
+With value: 0
+Tag values: %{cache: NebulexTelemetryExample.Cache}
+
 Metric measurement: :evictions (last_value)
 With value: 2
 Tag values: %{cache: NebulexTelemetryExample.Cache}

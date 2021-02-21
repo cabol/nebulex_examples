@@ -18,7 +18,7 @@ defmodule NbxCache.MixProject do
 
   defp deps do
     [
-      {:nebulex, "~> 2.0.0-rc.1"},
+      {:nebulex, "~> 2.0"},
       {:shards, "~> 1.0"}
     ]
   end
