@@ -5,7 +5,7 @@ defmodule NebulexTelemetryExample.Cache do
 
   def dispatch_cache_size do
     :telemetry.execute(
-      [:nebulex, :cache, :size],
+      [:nebulex_telemetry_example, :cache, :size],
       %{value: size()},
       %{cache: __MODULE__}
     )

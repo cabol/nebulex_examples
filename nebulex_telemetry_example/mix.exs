@@ -22,9 +22,9 @@ defmodule NebulexTelemetryExample.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:nebulex, "~> 2.0"},
-      {:decorator, "~> 1.3"},
-      {:telemetry_metrics, "~> 0.5"},
+      {:nebulex, "~> 2.1"},
+      {:decorator, "~> 1.4"},
+      {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 0.5"},
       {:telemetry_metrics_statsd, "~> 0.5.0"}
     ]

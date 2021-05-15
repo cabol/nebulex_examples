@@ -2,6 +2,8 @@ defmodule NebulexTelemetryExample.Telemetry do
   use Supervisor
   import Telemetry.Metrics
 
+  @telemetry_prefix "nebulex_telemetry_example.cache"
+
   def start_link(arg) do
     Supervisor.start_link(__MODULE__, arg, name: __MODULE__)
   end
@@ -21,22 +23,29 @@ defmodule NebulexTelemetryExample.Telemetry do
 
   defp metrics do
     [
-      # Nebulex Stats Metrics
-      last_value("nebulex.cache.stats.hits", tags: [:cache]),
-      last_value("nebulex.cache.stats.misses", tags: [:cache]),
-      last_value("nebulex.cache.stats.writes", tags: [:cache]),
-      last_value("nebulex.cache.stats.updates", tags: [:cache, :node]),
-      last_value("nebulex.cache.stats.evictions", tags: [:cache]),
-      last_value("nebulex.cache.stats.expirations", tags: [:cache]),
+      # Cache command events
+      summary(
+        @telemetry_prefix <> ".command.stop.duration",
+        unit: {:native, :millisecond},
+        tags: [:cache, :function_name],
+        tag_values: &Map.put(&1, :cache, &1.adapter_meta.cache)
+      ),
+      summary(
+        @telemetry_prefix <> ".command.exception.duration",
+        unit: {:native, :millisecond},
+        tags: [:function_name, :kind]
+      ),
 
-      # Nebulex custom Metrics
-      last_value("nebulex.cache.size.value", tags: [:cache]),
+      # Cache stats
+      last_value(@telemetry_prefix <> ".stats.hits", tags: [:cache]),
+      last_value(@telemetry_prefix <> ".stats.misses", tags: [:cache]),
+      last_value(@telemetry_prefix <> ".stats.writes", tags: [:cache]),
+      last_value(@telemetry_prefix <> ".stats.updates", tags: [:cache, :node]),
+      last_value(@telemetry_prefix <> ".stats.evictions", tags: [:cache]),
+      last_value(@telemetry_prefix <> ".stats.expirations", tags: [:cache]),
 
-      # VM Metrics
-      summary("vm.memory.total", unit: {:byte, :kilobyte}),
-      summary("vm.total_run_queue_lengths.total"),
-      summary("vm.total_run_queue_lengths.cpu"),
-      summary("vm.total_run_queue_lengths.io")
+      # Custom metrics
+      last_value(@telemetry_prefix <> ".size.value", tags: [:cache])
     ]
   end
 
