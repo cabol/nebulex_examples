@@ -22,9 +22,9 @@ defmodule RedisCache.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:nebulex_redis_adapter, "~> 2.1"},
+      {:nebulex_redis_adapter, "~> 2.3"},
       {:crc, "~> 0.10"},
-      {:jchash, "~> 0.1.2"}
+      {:jchash, "~> 0.1.3"}
     ]
   end
 end

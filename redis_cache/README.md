@@ -33,7 +33,7 @@ the needed Redis instances with just one command. Make sure you have Docker
 installed and then just run:
 
 ```
-$ docker-compose up
+$ docker-compose up -d
 ```
 
 [docker]: https://www.docker.com/
